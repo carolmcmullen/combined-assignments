@@ -23,9 +23,20 @@ public class Fibonacci {
      * @return the calculated element
      * @throws IllegalArgumentException if the given index is less than zero
      */
-    public static int atIndex(int i) throws IllegalArgumentException {
-        throw new NotImplementedException();
+    public static int atIndex(int i)  {
+    	int a = 0, b = 1, c;
+    	if (i == 0)
+    		return a;
+    	for (int s = 2; s <= i; s++)
+    	{
+    		c = a + b;
+    		a = b;
+    		b = c;
+    	}
+		return i;
     }
+    	
+    	
 
     /**
      * Calculates a slice of the fibonacci sequence, starting from a given start index (inclusive) and
