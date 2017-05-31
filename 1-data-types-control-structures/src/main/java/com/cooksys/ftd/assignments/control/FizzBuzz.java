@@ -26,8 +26,16 @@ public class FizzBuzz {
      * @throws IllegalArgumentException if b is zero
      */
     public static boolean divides(int a, int b) throws IllegalArgumentException {
-        throw new NotImplementedException();
-    }
+    	if (b == 0){
+    		throw new IllegalArgumentException();
+    	}
+    	
+        if (a % b == 0)
+        	return true;
+        else return false;
+        	
+    } 
+    
 
     /**
      * Generates a divisibility message for a given number. Returns null if the given number is not divisible by 3 or 5.
@@ -41,7 +49,24 @@ public class FizzBuzz {
      * @return a message according to the format above, or null if n is not divisible by either 3 or 5
      */
     public static String message(int n) {
-        throw new NotImplementedException();
+        // if n divisible by both 3 and 5 return fizzbuzz
+    	if (divides(n,3) && divides(n,5)) {
+    		return "FizzBuzz";
+    	}
+    	
+    	// if n divisible by 3 return fizz
+    	if (divides(n,3)) {
+    		return "Fizz";
+    			
+    	}
+    	
+    	// if n divisible by 5 return buzz
+    	if (divides(n,5)) {
+    		return "Buzz";
+    	}
+    	
+    	// if n not divisible by 3 or 5 return null
+    	return null;
     }
 
     /**
@@ -55,7 +80,17 @@ public class FizzBuzz {
      * @throws IllegalArgumentException if the given end is less than the given start
      */
     public static String[] messages(int start, int end) throws IllegalArgumentException {
-        throw new NotImplementedException();
+    	//if end < start 
+    	
+    	// find the size of the array by subtracting end and start
+    	
+    	// create an array (size)
+    	
+    	// loop through start to end number (filling array)
+    	
+    	//return array
+    	
+    	
     }
 
     /**
