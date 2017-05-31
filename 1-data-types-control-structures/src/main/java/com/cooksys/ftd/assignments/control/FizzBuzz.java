@@ -51,18 +51,18 @@ public class FizzBuzz {
     public static String message(int n) {
         // if n divisible by both 3 and 5 return fizzbuzz
     	if (divides(n,3) && divides(n,5)) {
-    		return "FizzBuzz";
+    		return "15: FizzBuzz";
     	}
     	
     	// if n divisible by 3 return fizz
     	if (divides(n,3)) {
-    		return "Fizz";
+    		return "3: Fizz";
     			
     	}
     	
     	// if n divisible by 5 return buzz
     	if (divides(n,5)) {
-    		return "Buzz";
+    		return "5: Buzz";
     	}
     	
     	// if n not divisible by 3 or 5 return null
@@ -79,17 +79,20 @@ public class FizzBuzz {
      * @return an array of divisibility messages
      * @throws IllegalArgumentException if the given end is less than the given start
      */
-    public static String[] messages(int start, int end) throws IllegalArgumentException {
+    public static int messages(int start, int end) throws IllegalArgumentException {
     	//if end < start 
-    	
+    	if (end < start)
+    		throw new IllegalArgumentException();
     	// find the size of the array by subtracting end and start
-    	
+    	int size = end - start;
     	// create an array (size)
-    	
+    	int[] numbers = new int[size];
     	// loop through start to end number (filling array)
-    	
+    	for (int i = 0; i < numbers.length; i++)
+    		numbers[i] = i;
+    		int totalNumbers = 0;
     	//return array
-    	
+    	return totalNumbers; 
     	
     }
 
