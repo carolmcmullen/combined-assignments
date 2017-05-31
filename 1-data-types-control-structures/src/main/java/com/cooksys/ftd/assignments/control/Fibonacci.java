@@ -23,19 +23,13 @@ public class Fibonacci {
      * @return the calculated element
      * @throws IllegalArgumentException if the given index is less than zero
      */
-    public static int atIndex(int i)  {
-    	int a = 0, b = 1, c;
-    	if (i == 0)
-    		return a;
-    	for (int s = 2; s <= i; s++)
-    	{
-    		c = a + b;
-    		a = b;
-    		b = c;
-    	}
-		return i;
-    }
+    public static int atIndex(int index) {
+    	if (index < 0)
+    		throw new IllegalArgumentException();
     	
+    	int[] fibNumbers = fibonacci(index+1);
+    	return fibNumbers[index];
+    }    	
     	
 
     /**
@@ -49,7 +43,36 @@ public class Fibonacci {
      *                                  given end is less than the given start
      */
     public static int[] slice(int start, int end) throws IllegalArgumentException {
-        throw new NotImplementedException();
+    	if (start < 0)
+    		throw new IllegalArgumentException();
+    	if (end < 0)
+    		throw new IllegalArgumentException();
+    	if (end < start)
+    		throw new IllegalArgumentException();
+    	
+    	if(end == 0){
+    		return new int[0];
+    	}
+    	
+    	// Determine number of integers that need to be returned.
+    	int size = end - start;
+    	
+    	
+    	// Create array and set size
+    	int[] numbers = new int[size];
+    	
+    	int[] allFibNumbers = fibonacci(end);
+    	int arrayIndex = 0;
+    	for (int index = 0; index < allFibNumbers.length; index++)
+    	{
+    		if (index >= start){
+    			numbers[arrayIndex] = allFibNumbers[index];
+    			arrayIndex++;
+    		}
+    			
+    	}
+    	
+    	return numbers;
     }
 
     /**
@@ -60,6 +83,22 @@ public class Fibonacci {
      * @throws IllegalArgumentException if the given count is negative
      */
     public static int[] fibonacci(int count) throws IllegalArgumentException {
-        throw new NotImplementedException();
+    	if (count < 0)
+    		throw new IllegalArgumentException();
+    	if (count == 0)
+    		return new int[0];
+    	
+    	int[] fibNumbers = new int[count];
+    	fibNumbers[0] = 1;
+    	
+    	if(count > 1){
+    		fibNumbers[1] = 1; 
+    	}
+    	
+    	for (int index = 2; index < count; index++)
+    	{
+    		fibNumbers[index] = fibNumbers[index-1] + fibNumbers[index-2];
+    	}
+		return fibNumbers;
     }
 }
