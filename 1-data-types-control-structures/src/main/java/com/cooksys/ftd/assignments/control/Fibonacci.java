@@ -27,11 +27,11 @@ public class Fibonacci {
     	int a = 0, b = 1, c;
     	if (i == 0)
     		return a;
-    	for (int s = 2; s <= i; s++)
+    	for (int c1 = 2; c1 <= i; c1++)
     	{
-    		c = a + b;
+    		c1 = a + b;
     		a = b;
-    		b = c;
+    		b = c1;
     	}
 		return i;
     }
