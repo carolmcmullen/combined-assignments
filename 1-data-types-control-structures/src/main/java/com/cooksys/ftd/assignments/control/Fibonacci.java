@@ -23,9 +23,24 @@ public class Fibonacci {
      * @return the calculated element
      * @throws IllegalArgumentException if the given index is less than zero
      */
+<<<<<<< HEAD
+    public static int atIndex(int i)  {
+    	int a = 0, b = 1, c;
+    	if (i == 0)
+    		return a;
+    	for (int c1 = 2; c1 <= i; c1++)
+    	{
+    		c1 = a + b;
+    		a = b;
+    		b = c1;
+    	}
+		return i;
+    }
+=======
     public static int atIndex(int index) {
     	if (index < 0)
     		throw new IllegalArgumentException();
+>>>>>>> 53f3d99c70575d9cc682d6067d7431efd3560637
     	
     	int[] fibNumbers = fibonacci(index+1);
     	return fibNumbers[index];
