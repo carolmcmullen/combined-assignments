@@ -4,28 +4,42 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class FatCat implements Capitalist {
 
-    public FatCat(String name, int salary) {
-        throw new NotImplementedException();
+	
+	
+	private FatCat owner;
+	
+	
+    public FatCat(String name, int salary) { 
+    	this.name = name;
+    	this.salary = salary;	
     }
 
-    public FatCat(String name, int salary, FatCat owner) {
-        throw new NotImplementedException();
+  
+	public FatCat(String name, int salary, FatCat owner) {
+		this.name = name;
+		this.salary = salary;
+		this.owner = owner;    
     }
 
+	private String name;
     /**
      * @return the name of the capitalist
      */
     @Override
     public String getName() {
-        throw new NotImplementedException();
-    }
-
+        
+        	return name;
+      }
+    
+    private int salary;
     /**
      * @return the salary of the capitalist, in dollars
      */
     @Override
     public int getSalary() {
-        throw new NotImplementedException();
+       
+    	return salary;
+    	
     }
 
     /**
@@ -33,7 +47,11 @@ public class FatCat implements Capitalist {
      */
     @Override
     public boolean hasParent() {
-        throw new NotImplementedException();
+    	if (owner == null)
+    		return false;
+    	return true;
+        
+        
     }
 
     /**
@@ -41,6 +59,23 @@ public class FatCat implements Capitalist {
      */
     @Override
     public FatCat getParent() {
-        throw new NotImplementedException();
+        return owner;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+    	try{
+    		FatCat r1 = (FatCat)obj;
+            return (this.getName() == r1.getName() && 
+            		(this.getSalary() == r1.getSalary() && 
+            		(this.getParent() == r1.getParent())));
+    	}
+    	catch(Exception e)
+    	{
+    		return false;
+    	}
+        
+    }
+    
 }
+

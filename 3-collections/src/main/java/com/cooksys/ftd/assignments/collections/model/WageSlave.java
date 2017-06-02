@@ -4,12 +4,19 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class WageSlave implements Capitalist {
 
+	private String name;
+	private int salary;
+	private FatCat owner;
+	
     public WageSlave(String name, int salary) {
-        throw new NotImplementedException();
+    	this.name = name;
+    	this.salary = salary;	
     }
 
     public WageSlave(String name, int salary, FatCat owner) {
-        throw new NotImplementedException();
+    	this.name = name;
+		this.salary = salary;
+		this.owner = owner;  
     }
 
     /**
@@ -17,7 +24,8 @@ public class WageSlave implements Capitalist {
      */
     @Override
     public String getName() {
-        throw new NotImplementedException();
+       return name;
+        
     }
 
     /**
@@ -25,7 +33,7 @@ public class WageSlave implements Capitalist {
      */
     @Override
     public int getSalary() {
-        throw new NotImplementedException();
+        return salary;
     }
 
     /**
@@ -33,7 +41,9 @@ public class WageSlave implements Capitalist {
      */
     @Override
     public boolean hasParent() {
-        throw new NotImplementedException();
+    	if (owner == null)
+    		return false;
+    	return true; 
     }
 
     /**
@@ -41,6 +51,19 @@ public class WageSlave implements Capitalist {
      */
     @Override
     public FatCat getParent() {
-        throw new NotImplementedException();
+    	return owner;
+    }
+    
+    public boolean equals(Object obj) {
+    	try{
+    		WageSlave r1 = (WageSlave)obj;
+            return (this.getName() == r1.getName() && 
+            		(this.getSalary() == r1.getSalary() && 
+            		(this.getParent() == r1.getParent())));
+    	}
+    	catch(Exception e)
+    	{
+    		return false;
+    	}
     }
 }
