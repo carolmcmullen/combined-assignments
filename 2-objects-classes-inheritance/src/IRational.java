@@ -25,7 +25,8 @@ interface IRational {
      * @return the constructed rational value
      * @throws IllegalArgumentException if the given denominator is 0
      */
-    IRational construct(int numerator, int denominator) throws IllegalArgumentException;
+    public IRational construct(int numerator, int denominator) throws IllegalArgumentException;  	
+}
 
     /**
      * negation of rational values
@@ -35,8 +36,16 @@ interface IRational {
      *
      * @return the negation of this
      */
-    default IRational negate() {        
-        return new Rational(-this.getNumerator(), this.getDenominator());
+    default IRational negate() {
+        throw new NotImplementedException();
+        
+        public static void main(String[] args) {
+            IntPredicate i = (x)-> x < 0;
+            
+            System.out.println(i.negate().test(123));
+
+          }
+    
     }
 
     /**
@@ -49,9 +58,7 @@ interface IRational {
      * @throws IllegalStateException if the numerator of this rational value is 0
      */
     default IRational invert() throws IllegalStateException {
-    	if(this.getNumerator() == 0)
-    		throw new IllegalStateException();
-    	return new Rational(this.getDenominator(), this.getNumerator());
+    	throw new NotImplementedException();
     }
 
     /**
@@ -65,16 +72,17 @@ interface IRational {
      * @throws IllegalArgumentException if that is null
      */
     default IRational add(IRational that) throws IllegalArgumentException {
-        if(that == null)
-        	throw new IllegalArgumentException();
-        int n1 = this.getNumerator();
-        int d1 = this.getDenominator();
-        int n2 = that.getNumerator();
-        int d2 = that.getDenominator();
-        
-        return new Rational((n1 * d2) + (n2 * d1), d1 * d2);
+        throw new NotImplementedException();
     }
 
+    	//public RatNumber add(RatNumber a)
+    {
+        RatNumber result;
+        result = new RatNumber(0,0);
+        result.num = num * a.den + a.num * den;
+        result.den = den * a.den;
+        return result;
+    } //
     /**
      * subtraction of rational values
      * <p>
@@ -86,15 +94,7 @@ interface IRational {
      * @throws IllegalArgumentException if that is null
      */
     default IRational sub(IRational that) throws IllegalArgumentException {
-    	if(that == null)
-        	throw new IllegalArgumentException();
-    	
-    	int n1 = this.getNumerator();
-        int d1 = this.getDenominator();
-        int n2 = that.getNumerator();
-        int d2 = that.getDenominator();
-        
-        return new Rational((n1 * d2) - (n2 * d1), d1 * d2);
+        throw new NotImplementedException();
     }
 
     /**
@@ -108,14 +108,7 @@ interface IRational {
      * @throws IllegalArgumentException if that is null
      */
     default IRational mul(IRational that) throws IllegalArgumentException {
-    	if(that == null)
-        	throw new IllegalArgumentException();
-    	
-    	int n1 = this.getNumerator();
-        int d1 = this.getDenominator();
-        int n2 = that.getNumerator();
-        int d2 = that.getDenominator();
-        return new Rational(n1 * n2, d1 * d2);
+        throw new NotImplementedException();
     }
 
     /**
@@ -129,14 +122,6 @@ interface IRational {
      * @throws IllegalArgumentException if that is null or if the numerator of that is 0
      */
     default IRational div(IRational that) throws IllegalArgumentException {
-    	if(that == null)
-        	throw new IllegalArgumentException();
-    	
-    	int n1 = this.getNumerator();
-        int d1 = this.getDenominator();
-        int n2 = that.getNumerator();
-        int d2 = that.getDenominator();
-        
-        return new Rational(n1 * d2, d1 * n2);
+        throw new NotImplementedException();
     }
 }
