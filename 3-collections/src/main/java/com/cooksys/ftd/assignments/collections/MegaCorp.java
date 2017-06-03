@@ -38,6 +38,7 @@ public class MegaCorp implements Hierarchy<Capitalist, FatCat> {
      */
     @Override
     public boolean add(Capitalist capitalist) {
+    	//use a has method here. Shouldn't have to use child 
     	if(capitalist == null)
     		return false; 
     	
@@ -65,14 +66,14 @@ public class MegaCorp implements Hierarchy<Capitalist, FatCat> {
     	    return false;
     	} 
     	//if capitalist has no parent and isnt a parent itself dont add it, return false
-    	if(child != null){
+    	//if(child != null){
     		if(child.getParent().equals(capitalist))
     		{
     			this.corporation.add(capitalist);
             	return true;
     		}
     		
-    	}
+    	//}
     	
     	return false;    
     }
