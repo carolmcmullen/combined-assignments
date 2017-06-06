@@ -11,6 +11,7 @@ public class Session {
     private String location;
     private String startDate;
     private Instructor instructor;
+    private String courseNumber;
     private List<Student> students;
 
     public String getLocation() {
@@ -44,4 +45,13 @@ public class Session {
     public void setStudents(List<Student> students) {
         this.students = students;
     }
+    @XmlAttribute
+	public void setCourseNumber(String courseNumber) {
+		this.courseNumber = courseNumber;
+		
+	}
+	
+	public String getCourseNumber() {
+	return courseNumber;
+	}
 }

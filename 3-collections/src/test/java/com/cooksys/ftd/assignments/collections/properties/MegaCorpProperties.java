@@ -33,10 +33,8 @@ public class MegaCorpProperties {
 
     @Property
     public void addHasParentlessFatCat(@Corp MegaCorp corp, @Cat FatCat cat) {
-    	// comments said this test should bee looking for false but the asserts were looking for true
-    	// so I changed them to assertFalse
-        assertFalse("#add() returned false when called with a parent-less FatCat", corp.add(cat));
-        assertFalse("#has() returned false when called with the parent-less FatCat that was just added", corp.has(cat));
+        assertTrue("#add() returned false when called with a parent-less FatCat", corp.add(cat));
+        assertTrue("#has() returned false when called with the parent-less FatCat that was just added", corp.has(cat));
     }
 
     @Property
@@ -61,10 +59,9 @@ public class MegaCorpProperties {
     @Property
     public void addHasMultipleArbitraryCapitalistNoDuplicates(@Corp MegaCorp corp, Set<@Cap(depth = -1) Capitalist> capitalists) {
         for (Capitalist capitalist : capitalists) {
-        	// on add/has message return false but test was assertTrue
-            assertTrue("#add() returned false when called with an arbitrary Capitalist", corp.add(capitalist));
-            assertTrue("#has() returned false when called with the arbitrary Capitalist that was just added", corp.has(capitalist));
-            assertFalse("#add() returned true when called with the arbitrary Capitalist that was just added", corp.add(capitalist));
+        	assertFalse("#add() returned false when called with an arbitrary Capitalist", corp.add(capitalist));
+        	assertFalse("#has() returned false when called with the arbitrary Capitalist that was just added", corp.has(capitalist));
+            assertTrue("#add() returned true when called with the arbitrary Capitalist that was just added", corp.add(capitalist));
         }
 
         for (Capitalist capitalist : capitalists) {
@@ -123,10 +120,8 @@ public class MegaCorpProperties {
     public void getParentsFatCat(@Corp MegaCorp corp, @Cat FatCat cat) {
         corp.add(cat);
         Set<FatCat> parents = corp.getParents();
-        // looks like the assert was reverse.  It used an assertFalse which made it expect parents not to be empty
-        assertTrue("#getParents() returned an empty set after adding a FatCat to the MegaCorp", parents.isEmpty());
-        // in the line above there is a check for the parents to be empty which also means the size is equal to 0
-        assertEquals("#getParents() returned a set with size > 1 after adding a single FatCat to the MegaCorp", 0, parents.size());
+        assertFalse("#getParents() returned an empty set after adding a FatCat to the MegaCorp", parents.isEmpty());
+        assertEquals("#getParents() returned a set with size > 1 after adding a single FatCat to the MegaCorp", 1, parents.size());
     }
 
     @Property
@@ -275,7 +270,7 @@ public class MegaCorpProperties {
         actual = corp.getParentChain(capitalist);
         assertNotNull("#getParentChain() returned a null value when called on an empty corp with an arbitrary Capitalist", actual);
         
-        // some of the Capitalist had parents and some did not.  The way this was written could not be passed 100% of the time.
+        //  CLM: Don't know how to make this empty when passing in a capitalist with a parent
         //assertTrue("#getParentChain() returned a non-empty list when called on an empty corp with an arbitrary Capitalist", actual.isEmpty());
     }
 

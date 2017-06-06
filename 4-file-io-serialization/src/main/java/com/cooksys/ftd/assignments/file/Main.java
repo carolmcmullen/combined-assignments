@@ -180,16 +180,21 @@ public class Main {
     		File instructorFile = new File("C:/users/ftd-1/Documents/GitHub/combined-assignments/4-file-io-serialization/input/memphis/08-08-2016/instructor.xml");
 			JAXBContext instructorjaxbContext = JAXBContext.newInstance(Instructor.class);
 			JAXBContext sessionjaxbContext = JAXBContext.newInstance(Session.class);
-			
+			//created new session/instructor
 			Session session = new Session();
 			Instructor instructor = new Instructor();
+			//implemented readContact method to look in instructorFile
 			Contact contact = readContact(instructorFile,instructorjaxbContext);
+			//set instructor from contact and instructor/location/Start date from session
 			instructor.setContact(contact);
 			session.setInstructor(instructor);
 			session.setLocation("Memphis");
-			session.setStartDate("08-08-2016");
+			session.setStartDate("08/08/2016");
+			session.setCourseNumber ("101");
+			//implemented readStudents method
 			File studentDirectory = new File("C:/users/ftd-1/Documents/GitHub/combined-assignments/4-file-io-serialization/input/memphis/08-08-2016/students");
 			session.setStudents(readStudents(studentDirectory, instructorjaxbContext));
+			//implemented the writeSession method 
 			File sessionFile = new File("C:/users/ftd-1/Documents/GitHub/combined-assignments/4-file-io-serialization/output/session.xml");
 			writeSession(session, sessionFile, sessionjaxbContext);
     	} catch (JAXBException e) {

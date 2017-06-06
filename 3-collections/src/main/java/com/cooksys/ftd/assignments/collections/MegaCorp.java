@@ -38,6 +38,8 @@ public class MegaCorp implements Hierarchy<Capitalist, FatCat> {
      */
     @Override
     public boolean add(Capitalist capitalist) {
+    	
+    	
     	//use a has method here. Shouldn't have to use child 
     	if(capitalist == null)
     		return false; 
@@ -46,25 +48,31 @@ public class MegaCorp implements Hierarchy<Capitalist, FatCat> {
         // if capitalist is present don't add it, return false
     	if(this.has(capitalist))
     	{
-    		child = null;
     		return false; 	
     	}
+    	
+    	if (capitalist.getClass() == WageSlave.class  && !capitalist.hasParent()) {
+    	    return false;
+    	} 
     		
         
         //if element has a parent and parent isnt part of hierarchy ADD the parent and then ADD element
-    	if(capitalist.hasParent())
+    	if(capitalist.hasParent() && !this.has(capitalist.getParent()))
     	{
     		// before doing recursive call set child
-    		child = capitalist;    		    		
-    		this.add(capitalist.getParent());
-    		child = null;
-    		this.corporation.add(capitalist);
-    		return true;    		
+    		//child = capitalist;    		    		
+    		add(capitalist.getParent()); 	
+    		if(!this.has(capitalist))
+    			corporation.add(capitalist); 
+    		return true;
+    	}
+    	else if (capitalist.hasParent() && this.has(capitalist.getParent())){
+    		return corporation.add(capitalist);
     	}
     	
-    	if (capitalist.getClass() == WageSlave.class) {
-    	    return false;
-    	} 
+    	return corporation.add(capitalist);
+    	
+    	/*
     	//if capitalist has no parent and isnt a parent itself dont add it, return false
     	//if(child != null){
     		if(child.getParent().equals(capitalist))
@@ -74,8 +82,9 @@ public class MegaCorp implements Hierarchy<Capitalist, FatCat> {
     		}
     		
     	//}
+    	*/
+    	//return false;    
     	
-    	return false;    
     }
 
     /**
@@ -115,9 +124,12 @@ public class MegaCorp implements Hierarchy<Capitalist, FatCat> {
     @Override
     public Set<FatCat> getParents() {
     	Set<FatCat> hashSet = new HashSet<FatCat>(); 
-    	for(int i = 0;i < corporation.size()-1;i++)
+    	for(int i = 0;i < corporation.size();i++)
     	{
-    		hashSet.add((FatCat) corporation.get(i));    		   			
+    		if (corporation.get(i).getClass() == FatCat.class) {
+    			hashSet.add((FatCat) corporation.get(i));  
+        	} 
+    		  		   			
     	}
     	
     	return hashSet;
@@ -135,14 +147,14 @@ public class MegaCorp implements Hierarchy<Capitalist, FatCat> {
     	
     	boolean foundItem = false;
     	for(int i = 0;i < corporation.size();i++)
-    	{
-    		if(corporation.get(i).equals(fatCat)){
-    			foundItem = true;
-    		} 
+    	{   		
     		
     		if(foundItem){
     			hashSet.add(corporation.get(i));
     		}
+    		if(corporation.get(i).equals(fatCat)){
+    			foundItem = true;
+    		} 
     		   			
     	}
     	return hashSet;
