@@ -4,6 +4,7 @@ import com.cooksys.ftd.assignments.socket.model.Config;
 import com.cooksys.ftd.assignments.socket.model.LocalConfig;
 import com.cooksys.ftd.assignments.socket.model.RemoteConfig;
 import com.cooksys.ftd.assignments.socket.model.Student;
+import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -62,13 +63,13 @@ public class Server extends Utils {
 	 */
 	public static void main(String[] args) {
 		//
-		String configFilePath = "C:/Users/ftd-1/Documents/GitHub/combined-assignments/5-socket-io-serialization/config/config.xml";
+		String configFilePath = "C:/Users/ftd-1/Desktop/GitHub/combined-assignments/5-socket-io-serialization/config/config.xml";
 		Config c = new Config();
-		c.setStudentFilePath("C:/Users/ftd-1/Documents/GitHub/combined-assignments/5-socket-io-serialization/config/student.xml");
+		c.setStudentFilePath("C:/Users/ftd-1/Desktop/GitHub/combined-assignments/5-socket-io-serialization/config/student.xml");
 		LocalConfig l = new LocalConfig();
 		l.setPort(4553);
 		RemoteConfig r = new RemoteConfig();
-		r.setHost("192.168.1.204");
+		r.setHost("192.168.1.22");
 		r.setPort(4553);
 		c.setLocal(l);
 		c.setRemote(r);
@@ -81,7 +82,7 @@ public class Server extends Utils {
 			// creating a new socket 
 			try(ServerSocket serverSocket = new ServerSocket(config.getRemote().getPort()))
 			{
-				serverSocket.setSoTimeout(100000);
+				serverSocket.setSoTimeout(1000000);
 				
 				while(true){
 					try{
@@ -94,11 +95,14 @@ public class Server extends Utils {
 						//System.out.println(in.readUTF());
 						// create output stream
 						DataOutputStream out = new DataOutputStream(server.getOutputStream());
+						
 						// unmarshalling student
 						Student student = loadStudent(config.getStudentFilePath(),JAXBContext.newInstance(Student.class));
 						//marshalling student
 						unloadStudent(student,JAXBContext.newInstance(Student.class),out);
-						out.writeUTF("Thanks for connecting");
+						//Gson gson = new Gson();
+						//String jsonString = gson.toJson(student);
+						//out.writeUTF("Student: " + jsonString);
 						//out.close();
 					}
 					catch(SocketTimeoutException e){

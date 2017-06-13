@@ -27,11 +27,12 @@ public class Client extends Utils {
      * over the socket as xml, and should unmarshal that object before printing its details to the console.
      */
     public static void main(String[] args) {
-    	String configFilePath = "C:/Users/ftd-1/Documents/GitHub/combined-assignments/5-socket-io-serialization/config/config.xml";
+    	String configFilePath = "C:/Users/ftd-1/Desktop/GitHub/combined-assignments/5-socket-io-serialization/config/config.xml";
 		try {
 			// set config object from config.xml
 			Config config = loadConfig(configFilePath, JAXBContext.newInstance(Config.class));
 			// creating a new Socket client 
+			System.out.println("Starting connection...");
 			try(Socket client = new Socket(config.getRemote().getHost(),
 					config.getRemote().getPort()))
 			{

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <config>
     <local port="4553"/>
-    <remote host="192.168.1.204" port="4553"/>
-    <student-file-path>C:/Users/ftd-1/Documents/GitHub/combined-assignments/5-socket-io-serialization/config/student.xml</student-file-path>
+    <remote host="192.168.1.22" port="4553"/>
+    <student-file-path>C:/Users/ftd-1/Desktop/GitHub/combined-assignments/5-socket-io-serialization/config/student.xml</student-file-path>
 </config>

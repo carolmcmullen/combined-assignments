@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<student firstname="Carol" lastname="McMullen">
+<student firstName="Carol" lastName="McMullen">
   <favorite-ide>favoriteIDE</favorite-ide>
   <favorite-language>favoriteLanguage</favorite-language>
   <favorite-paradigm>favoriteParadigm</favorite-paradigm>
