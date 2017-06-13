@@ -51,18 +51,24 @@ public class FizzBuzz {
     public static String message(int n) {
         // if n divisible by both 3 and 5 return fizzbuzz
     	if (divides(n,3) && divides(n,5)) {
-    		return "15: FizzBuzz";
+
+    		return n+": FizzBuzz";
+
     	}
     	
     	// if n divisible by 3 return fizz
     	if (divides(n,3)) {
-    		return "3: Fizz";
+
+    		return n+": Fizz";
+
     			
     	}
     	
     	// if n divisible by 5 return buzz
     	if (divides(n,5)) {
-    		return "5: Buzz";
+
+    		return n+": Buzz";
+
     	}
     	
     	// if n not divisible by 3 or 5 return null
@@ -79,21 +85,35 @@ public class FizzBuzz {
      * @return an array of divisibility messages
      * @throws IllegalArgumentException if the given end is less than the given start
      */
-    public static int messages(int start, int end) throws IllegalArgumentException {
+    public static String[] messages(int start, int end) throws IllegalArgumentException {
     	//if end < start 
     	if (end < start)
     		throw new IllegalArgumentException();
+
+    	if (end == start)
+    		return new String[0];
     	// find the size of the array by subtracting end and start
     	int size = end - start;
     	// create an array (size)
-    	int[] numbers = new int[size];
+    	String[] messages = new String[size];
+    	int x = 0;
     	// loop through start to end number (filling array)
-    	for (int i = 0; i < numbers.length; i++)
-    		numbers[i] = i;
-    		int totalNumbers = 0;
-    	//return array
-    	return totalNumbers; 
+    	for (int i = 0; i < end; i++){
+    		if(i >= start){
+    			if(message(i) != null)
+    			{
+    				messages[x] = message(i);
+    				x++;
+    			}
+    		}
+    	}
+    	String[] messageWithNullsRemoved = new String[x];
+    	for (int i = 0; i < x; i++){
+    		messageWithNullsRemoved[i] = messages[i];
+    	}
     	
+    	//return array
+    	return messageWithNullsRemoved;
     }
 
     /**
@@ -102,12 +122,6 @@ public class FizzBuzz {
      */
     public static void main(String[] args) {
         throw new NotImplementedException();
-        {
-        	for(int count = 1; count < 116; count++)
-        	{
-        		//sysout(totalNumbers);
-        	}
-        }
     }
 
 }
